@@ -264,15 +264,12 @@ Node.prototype._compileGetHandlerMatchingConstraints = function () {
   // always check the version constraint first as it is the most selective
   constraints.sort((a, b) => a === 'version' ? 1 : 0)
 
-  for (const constraint of constraints) {
-    this.constrainedHandlerStores[constraint] = this._buildConstraintStore(constraint)
-  }
-
   lines.push(`
   let candidates = 0b${'1'.repeat(this.handlers.length)}
   let mask, matches
   `)
   for (const constraint of constraints) {
+    this.constrainedHandlerStores[constraint] = this._buildConstraintStore(constraint)
     // Setup the mask for indexes this constraint applies to. The mask bits are set to 1 for each position if the constraint applies.
     lines.push(`
     mask = ${this._constrainedIndexBitmask(constraint)}
