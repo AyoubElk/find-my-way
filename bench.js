@@ -93,13 +93,13 @@ suite
     findMyWay.find('GET', '/', { version: '1.x', host: 'google.com' })
   })
   .add('find long nested dynamic route', function () {
-    findMyWay.find('GET', '/posts/10/comments/42/author', undefined)
+    findMyWay.find('GET', '/posts/10/comments/42/author', { host: 'fastify.io' })
   })
   .add('find long nested dynamic route with other method', function () {
-    findMyWay.find('POST', '/posts/10/comments', undefined)
+    findMyWay.find('POST', '/posts/10/comments', { host: 'fastify.io' })
   })
   .on('cycle', function (event) {
     console.log(String(event.target))
   })
-  .on('complete', function () {})
+  .on('complete', function () { })
   .run()
