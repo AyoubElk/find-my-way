@@ -266,7 +266,7 @@ Node.prototype._compileGetHandlerMatchingConstraints = function () {
 
   lines.push(`
   let candidates = 0b${'1'.repeat(this.handlers.length)}
-  let mask, matches
+  let mask, matches, value
   `)
   for (const constraint of constraints) {
     this.constrainedHandlerStores[constraint] = this._buildConstraintStore(constraint)
