@@ -138,6 +138,27 @@ Node.prototype.findByLabel = function (path) {
   return this.children[path[0]]
 }
 
+Node.prototype.findChild = function (path) {
+  var child = this.children[path[0]]
+  if (child !== undefined && (child.numberOfChildren > 0 || child.handlers[0] !== null)) {
+    if (path.slice(0, child.prefix.length) === child.prefix) {
+      return child
+    }
+  }
+
+  child = this.children[':']
+  if (child !== undefined && (child.numberOfChildren > 0 || child.handlers[0] !== null)) {
+    return child
+  }
+
+  child = this.children['*']
+  if (child !== undefined && (child.numberOfChildren > 0 || child.handlers[0] !== null)) {
+    return child
+  }
+
+  return null
+}
+
 Node.prototype.findMatchingChild = function (derivedConstraints, path) {
   var child = this.children[path[0]]
   if (child !== undefined && (child.numberOfChildren > 0 || child.getMatchingHandler(derivedConstraints) !== null)) {
@@ -176,6 +197,7 @@ Node.prototype.addHandler = function (handler, params, store, constraints) {
     if (!this.constraintKeys.includes(key)) {
       this.constraintKeys.push(key)
     }
+    this.constrainer.addUsedStrategy(key)
   }
 
   // Note that the fancy constraint handler matcher needs to be recompiled now that the list of handlers has changed

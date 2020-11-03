@@ -368,7 +368,9 @@ Router.prototype.find = function find (method, path, derivedConstraints) {
     var previousPath = path
     // found the route
     if (pathLen === 0 || path === prefix) {
-      var handle = currentNode.getMatchingHandler(derivedConstraints)
+      var handle = derivedConstraints === null
+        ? currentNode.handlers[0]
+        : currentNode.getMatchingHandler(derivedConstraints)
       if (handle !== null && handle !== undefined) {
         var paramsObj = {}
         if (handle.paramsLength > 0) {
@@ -397,7 +399,9 @@ Router.prototype.find = function find (method, path, derivedConstraints) {
       idxInOriginalPath += len
     }
 
-    var node = currentNode.findMatchingChild(derivedConstraints, path)
+    var node = derivedConstraints === null
+      ? currentNode.findChild(path)
+      : currentNode.findMatchingChild(derivedConstraints, path)
 
     if (node === null) {
       node = currentNode.parametricBrother
