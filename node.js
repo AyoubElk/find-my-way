@@ -99,7 +99,7 @@ Node.prototype.addChild = function (node) {
   return this
 }
 
-Node.prototype.reset = function (prefix, constraints) {
+Node.prototype.reset = function (prefix) {
   this.prefix = prefix
   this.children = {}
   this.handlers = []
