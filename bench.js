@@ -45,28 +45,28 @@ findMyWay.on('GET', '/pages/:id', () => true)
 
 suite
   .add('lookup static route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup dynamic route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/user/tomas', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/user/tomas', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup dynamic multi-parametric route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/customer/john-doe', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/customer/john-doe', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup dynamic multi-parametric route with regex', function () {
-    findMyWay.lookup({ method: 'GET', url: '/at/12h00m', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/at/12h00m', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup long static route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/abc/def/ghi/lmn/opq/rst/uvz', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/abc/def/ghi/lmn/opq/rst/uvz', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup long dynamic route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/user/qwertyuiopasdfghjklzxcvbnm/static', headers: { host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/user/qwertyuiopasdfghjklzxcvbnm/static', headers: { host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup static versioned route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/', headers: { 'accept-version': '1.x', host: 'fastify.io' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/', headers: { 'accept-version': '1.x', host: 'fastify.io' } }, { end: () => true })
   })
   .add('lookup static constrained (version & host) route', function () {
-    findMyWay.lookup({ method: 'GET', url: '/', headers: { 'accept-version': '1.x', host: 'google.com' } }, null)
+    findMyWay.lookup({ method: 'GET', url: '/', headers: { 'accept-version': '1.x', host: 'google.com' } }, { end: () => true })
   })
   .add('find static route', function () {
     findMyWay.find('GET', '/', { host: 'fastify.io' })
