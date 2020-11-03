@@ -195,7 +195,7 @@ function compileThenGetHandlerMatchingConstraints (derivedConstraints) {
 
 // This is the hot path for node handler finding -- change with care!
 Node.prototype.getMatchingHandler = function (derivedConstraints) {
-  // If this node has no handlers, it can't ever match anything, so set a function that just returns null
+  // If this node has no handlers, it can't ever match anything, so just returns null
   if (this.handlers.length === 0) {
     return null
   }
